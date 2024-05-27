@@ -1,0 +1,26 @@
+admin  > members > index.erb (メンバー一覧)
+<h1>全てのメンバー一覧</h1>
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>メンバー名</th>
+      <th>所属チーム</th>
+      <th></th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= image_tag member.get_profile_image(100,100) %></td>
+        <td><%= link_to member.screen_name, admin_member_path(member) %> </td>
+        <td><%= member.team.team_name ? member.team.team_name : "無所属" %></td>
+        <td><%= link_to "編集", edit_admin_member_path(member) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

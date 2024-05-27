@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>チームの共有漏れを防ぎ</h1>
+  <h1>スケジュール管理</h1>
+  <p>シェアコミは簡単にスケジュールの登録やタスクの振り分けができる</p>
+  <p>運用のための企画管理ツールです。</p>
+
+<div class="row">
+  <div class="col-md-6">管理者
+<!--管理者-->
+  　<%= link_to "管理者新規登録", new_admin_registration_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :get %>
+    <%= link_to "管理者ログイン", new_admin_session_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :get %>
+    <%= link_to "管理者ゲストログイン（閲覧用）", admin_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+  </div>
+  <div class="col-md-6">メンバー
+
+  　<%= link_to "メンバーログイン", new_member_session_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :get %>
+    <%= link_to "メンバーゲストログイン（閲覧用）", members_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
+</div>  

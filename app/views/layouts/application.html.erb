@@ -1,16 +1,156 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ShareComi</title>
+    <title>Share Comi</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+        <!-- Bootstrap CSSの読み込み -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
   </head>
 
   <body>
+    <header>
+       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+
+<!--ロゴ(常設)-->
+        <a class="navbar-brand" href="/">
+          <span>Share Comi</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ml-auto">
+
+<!--メンバーのヘッダー-->
+      <% if member_signed_in? %>
+      　<%- if request.path.match(/\/public(\/)?/) %>
+      　<!--検索-->
+          <div class="search_form">
+            <%= form_with url: public_search_path, local: true, method: :get do |f| %>
+              <%= f.text_field :word %>
+              <%= f.select :model_project, options_for_select([['Project']]) %>
+              <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+              <%= f.submit "検索", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <li class="nav-item">
+          <%= link_to new_public_project_path, class: 'nav-link text-light' do %>
+            <i class="fas fa-book-open"></i>企画追加＋
+          <% end %>
+        </li>
+          <%= link_to destroy_member_session_path, method: :delete, class: 'nav-link text-light' do %>
+          <!--destroy_user_session_path, method: :deleteは削除したい-->
+            <i class="fas fa-sign-out-alt"></i>メンバーログアウト
+          <% end %>
+      　   <%= link_to public_members_path do %>
+            <%= image_tag current_member.get_profile_image(100,100) %></td>
+
+          <% end %>
+
+      <% else %>
+        <!--<li>-->
+        <!--  <%= link_to "ログイン", new_member_session_path %>-->
+        <!--</li>-->
+
+      <% end %>
+        <% end %>
+
+<!--admiｎのヘッダー-->
+      <% if admin_signed_in? %>
+      　<%- if request.path.match(/\/admin(\/)?/) %>
+      　<!--検索-->
+      　　
+          <div class="search_form">
+            <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
+              <%= f.text_field :word %>
+              <%= f.select :model_member, options_for_select([['Member']]) %>
+              <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
+              <%= f.submit "検索", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+          <%= link_to new_admin_team_path, class: 'nav-link text-light' do %>
+            <i class="fas fa-book-open"></i>チーム追加＋
+          <% end %>
+          <!--<%#= link_to new_member_registration_path, class: 'nav-link text-light' do %>-->
+          <%= link_to new_admin_member_path, class: 'nav-link text-light' do %>
+            <i class="fas fa-book-open"></i>メンバー追加＋
+          <% end %>
+          <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do %>
+          <!--destroy_user_session_path, method: :deleteは削除したい-->
+            <i class="fas fa-sign-out-alt"></i>管理者ログアウト
+          <% end %>
+      　   <%= link_to admin_customers_path do %>
+            <%= image_tag current_admin.get_profile_image(100,100) %></td>
+          <% end %>
+        <% else %>
+          <li class="nav-item">
+          <% if current_page?(new_admin_session_path)  %>
+            <%= link_to new_admin_registration_path, class: 'nav-link text-light' do %>
+            <i class="fas fa-sign-in-alt"></i>新規登録
+            <% end %>
+        <% end %>
+      <% end %>
+      <%- if request.path.match(/\/sign_up(\/)?/) %>
+        <%= link_to new_admin_session_path, class: 'nav-link text-light' do %>
+          <i class="fas fa-sign-in-alt"></i>ログイン
+        <% end %>
+      <% end %>
+        </li>
+    </div>
+  </div>
+</nav>
+
+      <% end %>
+    </header>
+    <div class="row">
+      <div class="col-sm-1">
+<!--メンバーのサイドバー-->   
+        <% if member_signed_in? %>
+      　  <%- if request.path.match(/\/public(\/)?/) %>
+           <%= link_to public_member_tasks_path, class: 'nav-link text-light' do %>
+             <i class="fas fa-book-open"></i>自分の担当一覧
+           <% end %>
+           <%= link_to public_projects_path, class: 'nav-link text-light' do %>
+             <i class="fas fa-book-open"></i>全ての企画一覧
+           <% end %>
+           <%= link_to public_project_candidates_path, class: 'nav-link text-light' do %>
+             <i class="fas fa-book-open"></i>下書き一覧
+           <% end %>
+           <%= link_to public_project_schedules_path, class: 'nav-link text-light' do %>
+             <i class="fas fa-book-open"></i>企画カレンダー
+           <% end %>
+         <% end %>
+        <% end %>
+<!--アドミンのサイドバー-->   
+        <% if admin_signed_in? %>
+      　  <%- if request.path.match(/\/admin(\/)?/) %>
+           <%= link_to admin_teams_path, class: 'nav-link text-light' do %>
+             <i class="fas fa-book-open"></i>チーム一覧
+           <% end %>
+           <%= link_to admin_members_path, class: 'nav-link text-light' do %>
+             <i class="fas fa-book-open"></i>メンバー一覧
+           <% end %>
+         <% end %>
+        <% end %>
+      </div>
+      <div class="col-sm-11">
     <%= yield %>
+      </div>
+    </div>
+  </div>
   </body>
 </html>
+
+
+
+
+

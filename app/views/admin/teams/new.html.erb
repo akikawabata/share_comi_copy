@@ -1,0 +1,8 @@
+<h1>新規チーム追加</h1>
+<%= form_with model: @team, url: admin_teams_path, method: :post do |f| %>
+<!--form_with ひとつのモデル画面を表示する前にコントローラを持ってくる@team　とびさき： url: admin_teams_path -->
+  <h4>チーム名</h4>
+  <%= f.text_field :team_name %>
+    
+  <%= f.submit '追加' %>
+<% end %>

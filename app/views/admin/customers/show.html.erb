@@ -1,0 +1,9 @@
+<h1>Admin::ComiCustomers#show</h1>
+<p>Find me in app/views/public/members/show.html.erb</p>
+
+<!--ゲストユーザーはプロフィール編集を行えないようにする-->
+<% unless @admin.guest_admin? %>
+<div class="row">
+  <%= link_to "",edit_admin_customers_path(admin),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{admin.id}" %>
+</div>
+<% end %>

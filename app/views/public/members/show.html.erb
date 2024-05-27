@@ -1,0 +1,10 @@
+<h1>Public::Members#show</h1>
+<p>Find me in app/views/public/members/show.html.erb</p>
+
+<!--ゲストユーザーはプロフィール編集を行えないようにする-->
+  <% unless @member.guest_member? %>
+  <div class="row">
+    <%= link_to "",edit_public_members_path(member),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{member.id}" %>
+  </div>
+    <% end %>
+  

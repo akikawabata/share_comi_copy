@@ -6,12 +6,15 @@ class Admin::TeamsController < ApplicationController
 
   def create
     team = Team.new(team_params)
+    team.admin_id = current_admin.id
     team.save
     redirect_to admin_teams_path
   end
 
   def index
-    @teams = Team.all
+  #ログインしている管理者ユーザー(adminモデルから見つけてくる)/チーム一覧(見つけてきた対象のチーム一覧)アソシエーション
+    @admin = Admin.find(current_admin.id)
+    @teams = @admin.teams
   end
 
   def show
@@ -29,8 +32,8 @@ class Admin::TeamsController < ApplicationController
   end
 
   def confirm
-    @team = Team.find(params[:id])  
-    #     team.destroy 
+    @team = Team.find(params[:id])
+    #     team.destroy
     # redirect_to admin_teams_path
   end
 

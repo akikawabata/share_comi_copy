@@ -83,7 +83,6 @@ ActiveRecord::Schema.define(version: 2024_05_11_075503) do
   end
 
   create_table "projects", force: :cascade do |t|
-    t.integer "member_id", null: false
     t.string "project_name"
     t.string "project_details"
     t.datetime "start_date_time"
@@ -91,13 +90,14 @@ ActiveRecord::Schema.define(version: 2024_05_11_075503) do
     t.boolean "public_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["member_id"], name: "index_projects_on_member_id"
   end
 
   create_table "teams", force: :cascade do |t|
+    t.integer "admin_id", null: false
     t.string "team_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["admin_id"], name: "index_teams_on_admin_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -105,5 +105,5 @@ ActiveRecord::Schema.define(version: 2024_05_11_075503) do
   add_foreign_key "member_tasks", "members"
   add_foreign_key "member_tasks", "projects"
   add_foreign_key "members", "teams"
-  add_foreign_key "projects", "members"
+  add_foreign_key "teams", "admins"
 end

@@ -1,2 +1,8 @@
-<h1>Public::Projects#edit</h1>
-<p>Find me in app/views/public/projects/edit.html.erb</p>
+<h1>企画編集</h1>
+
+<%# バリデーションメッセージの部分テンプレート %>
+<%= render 'layouts/error_messages', model: @project %>
+
+<%= form_with model: @project do |project| %>
+  <%= render 'form', project: project %>
+<% end %>

@@ -13,7 +13,7 @@
   <tbody>
     <% @teams.each do |team| %>
       <tr>
-        <td><%= link_to team.team_name, admin_team_path(team) %> </td>
+        <td><%= link_to team.team_name, admin_team_path(team.id) %></td>
         <td><%= link_to "編集",edit_admin_team_path(team)  %></td>
       </tr>
     <% end %>

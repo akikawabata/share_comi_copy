@@ -18,7 +18,11 @@ admin  > members > index.erb (メンバー一覧)
       <tr>
         <td><%= image_tag member.get_profile_image(100,100) %></td>
         <td><%= link_to member.screen_name, admin_member_path(member) %> </td>
-        <td><%= member.team.team_name ? member.team.team_name : "無所属" %></td>
+            <% if member.team %>
+          <td><%= member.team.team_name %></td>
+            <% else %>
+        <td>無所属</td>
+            <% end %>
         <td><%= link_to "編集", edit_admin_member_path(member) %></td>
       </tr>
     <% end %>

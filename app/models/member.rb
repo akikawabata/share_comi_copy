@@ -2,9 +2,13 @@ class Member < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_one_attached :profile_image
-  belongs_to :team
+  belongs_to :team, optional: true#teamに属さないメンバーも許容される
   has_many :member_tasks, dependent: :destroy
-  has_many :projects, dependent: :destroy
+  # has_many :projects, dependent: :destroy#削除したら投稿できる
+
+ def team_name
+   self.team.try(:team_name)
+ end
 
 def get_profile_image(width, height)
   unless profile_image.attached?
@@ -20,7 +24,7 @@ end
 # メールアドレスがゲストユーザーのものであるかを判定しtrueかfalseの値返す
 GUEST_MEMBER_EMAIL = "guest@example.com"
   def self.guest
-    find_or_create_by!(email: GUEST_MEMBER_EMAIL,team_name: ShareComi) do |member|
+    find_or_create_by!(email: GUEST_MEMBER_EMAIL) do |member|
       member.password = SecureRandom.urlsafe_base64
       member.screen_name = "guestmember"
     end

@@ -1,2 +1,19 @@
-<h1>Public::MemberLists#index</h1>
-<p>Find me in app/views/public/member_lists/index.html.erb</p>
+<h1><%= @team.team_name %></h1>
+<h1>メンバー一覧</h1>
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>メンバー名</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<% @members.each do |member| %>
+      <tr>
+        <td><%= image_tag member.get_profile_image(100,100) %></td>
+        <td><%= link_to member.screen_name, public_members_path %> </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

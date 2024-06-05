@@ -23,10 +23,18 @@ class Public::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
-  
+
   def guest_sign_in
     member = Member.guest
     sign_in member
     redirect_to public_member_tasks_path, notice: "メンバーゲストとしてでログインしました。"
+  end
+
+  def after_sign_in_path_for(resource)
+    public_member_tasks_path  #ここを好きなパスに変更
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+   root_path #ここを好きなパスに変更
   end
 end

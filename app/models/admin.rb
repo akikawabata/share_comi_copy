@@ -1,11 +1,12 @@
 class Admin < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+    has_many :teams, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 # アイコン画像設定
   has_one_attached :profile_image
-  
+
 def get_profile_image(width, height)
   unless profile_image.attached?
     file_path = Rails.root.join('app/assets/no_image.png')
@@ -22,8 +23,8 @@ GUEST_ADMIN_EMAIL = "guest@example.com"
       admin.administrator_name = "guestadmin"
     end
   end
-  
-  def guest_admin?#インスタンス変数に使うメソッド
-    email == GUEST_ADMIN_EMAIL
-  end
+
+#   def guest_admin?#インスタンス変数に使うメソッド
+#     email == GUEST_ADMIN_EMAIL
+#   end
 end

@@ -2,23 +2,23 @@ admin＞members＞new.html.erb（メンバー追加画面）
 
    <h2>新規メンバー追加</h2>
 <%= form_with model: @member, url: admin_members_path, method: :post do |f| %>
-    
+
       <div class="field">
         <%= f.label :名前 %><br>
         <%= f.text_field :screen_name %>
       </div>
-    
+
       <div class="field">
         <%= f.label :所属チーム %><br>
-        <%= f.collection_select(:team_id, Team.all, :id, :team_name, include_blank: "選択して下さい" ) %>
+        <%= f.collection_select(:team_id, @teams, :id, :team_name, include_blank: "選択して下さい" ) %>
 
       </div>
-    
+
       <div class="field">
         <%= f.label :メールアドレス %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
       </div>
-    
+
       <div class="field">
         <%= f.label :パスワード %>
         <% if @minimum_password_length %>
@@ -26,12 +26,12 @@ admin＞members＞new.html.erb（メンバー追加画面）
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>
-    
+
       <div class="field">
         <%= f.label :パスワード再入力 %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
       </div>
-    
+
       <div class="actions">
         <%= f.submit "追加" %>
       </div>

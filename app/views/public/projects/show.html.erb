@@ -1,2 +1,31 @@
-<h1>Public::Projects#show</h1>
-<p>Find me in app/views/public/projects/show.html.erb</p>
+<h1>企画詳細</h1>
+<ul>
+  <li><%= link_to '編集', edit_public_project(@project) %></li>
+  <li><%= link_to 'この企画を削除', public_project(@project), method: :delete %></li>
+</ul>
+
+<h3>タイトル<%= @project.project_name %></h3>
+<h3>内容<%= @project.project_details %></h3>
+<hr>
+
+<h4>Tracks --></h4>
+
+<%# トラックの存在確認 %>
+<% if @project.member_tasks.count == 0 %>
+  <%# トラックなしの場合の表示 %>
+  <p>
+    企画はまだありません
+  </p>
+<% else %>
+  <%# トラックがある場合の表示 %>
+  <p>
+    <%= "#{@project.member_tasks.count} tasks" %>
+  </p>
+  <ul>
+    <% @project.member_tasks.each do |member_task| %>
+      <li>
+        <%= member_task.task %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

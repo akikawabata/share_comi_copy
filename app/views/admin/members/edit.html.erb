@@ -1,2 +1,26 @@
-<h1>Admin::Members#edit</h1>
-<p>Find me in app/views/admin/members/edit.html.erb</p>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>メンバーアカウント情報編集</b></h5>
+
+  <div class="left-50px">
+    <%= image_tag @member.get_profile_image(100,100), class: "square-image-big" %>
+  </div>
+
+  <%= form_with model: @member, url:admin_member_path, method: :patch do |f| %>
+
+    <h6 class="h6-left"><b><label for="inputName">名前</label></b><br>
+      <%= f.text_field :screen_name %></h6>
+
+    <h6 class="h6-left"><b><label for="inputTeam">所属チーム</label></b><br>
+       <%= f.collection_select(:team_id, @teams, :id, :team_name, include_blank: "選択して下さい" ) %></h6>
+
+    <h6 class="h6-left"><b><label for="inputEmail">メールアドレス</label></b><br>
+      <%= f.text_field :email %></h6>
+    <br>
+
+    <div class="left-50px">
+      <%= f.submit "変更を保存", class: "btn btn-success mr-2" %>
+    </div>
+  <% end %><!--|f|-->
+
+</div>

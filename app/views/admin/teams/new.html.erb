@@ -1,8 +1,16 @@
-<h1>新規チーム追加</h1>
-<%= form_with model: @team, url: admin_teams_path, method: :post do |f| %>
-<!--form_with ひとつのモデル画面を表示する前にコントローラを持ってくる@team　とびさき： url: admin_teams_path -->
-  <h4>チーム名</h4>
-  <%= f.text_field :team_name %>
-    
-  <%= f.submit '追加' %>
-<% end %>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+    <h5><b>新規チーム追加</b></h5>
+    <%= form_with model: @team, url: admin_teams_path, method: :post do |f| %>
+
+      <h6 class="h6-left"><b>チーム名</b></h6>
+      <div class="left-50px">
+        <%= f.text_field :team_name %>
+      </div>
+
+      <div class="left-50px">
+        <%= f.submit '追加', class: "btn btn-success" %>
+      </div>
+
+    <% end %>
+</div><!--col-md-9-->

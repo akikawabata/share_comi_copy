@@ -1,19 +1,23 @@
-<h1><%= @team.team_name %></h1>
-<h1>メンバー一覧</h1>
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>メンバー名</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<% @members.each do |member| %>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b><%= @team.team_name %>  メンバー一覧</b></h5>
+  <br>
+
+  <table>
+    <thead>
       <tr>
-        <td><%= image_tag member.get_profile_image(100,100) %></td>
-        <td><%= link_to member.screen_name, public_members_path %> </td>
+        <th></th>
+        <th>メンバー名</th>
+        <th>メールアドレス</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @members.each do |member| %>
+      </tr>
+          <td><%= image_tag member.get_profile_image(100,100), class: "square-image" %></td>
+          <td><%= link_to member.screen_name, public_member_path(member.id), class: "custom-link" %> </td>
+          <td><%= link_to member.email %> </td>
+      <% end %>
+    </tbody>
+  </table>
+</div>

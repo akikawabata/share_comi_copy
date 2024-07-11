@@ -1,2 +1,39 @@
-<h1>Public::Projects#draft</h1>
-<p>Find me in app/views/public/projects/draft.html.erb</p>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>下書き一覧</b></h5>
+  <br>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>企画タイトル</th>
+        <th>開催日時</th>
+        <th>終了日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+      </tr>
+          <td><%= link_to project.project_name, public_project_path(project), class: "custom-link" %></td>
+            <td><%= project.start_date_time&.strftime("%Y/%m/%d %H:%M") %>
+                  <% if project.start_date_time.nil?  %>
+                    未設定
+                  <% end %>
+            </td>
+            <td><%= project.end_date_time&.strftime("%Y/%m/%d %H:%M") %>
+                  <% if project.end_date_time.nil?  %>
+                    未設定
+                  <% end %>
+            </td>
+        <% end %>
+          </tr>
+    </tbody>
+  </table>
+
+  <div class ="notice">
+    <% if @projects.count == 0 %>
+      <p>下書きはありません</p>
+      <% else %>
+    <% end %>
+  </div>
+</div><!--col-md-9-->

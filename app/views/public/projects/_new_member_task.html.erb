@@ -1,16 +1,17 @@
-<%# 以下の.nested-fieldsは、必須です。 %>
 <div class="nested-fields">
   <div class="field">
     <%# link_to_add_associationのform_nameで指定した名前。(初期値 : f)  %>
-      <%= member_task.label :member_id, '担当者' %>
-      <%= member_task.collection_select :member_id, @members, :id, :screen_name, include_blank: "選択して下さい"  %>
-  </div>    
-  <div class="field">
-    <%= member_task.label :task, 'タスク内容' %>
-    <%= member_task.text_area :task %>
+
+      <h6><b><%= member_task.label :member_id, '担当者' %></b><br>
+      <%#= member_task.collection_select :member_id, @members, :is_active.true, :id, :screen_name, include_blank: "選択して下さい"  %>
+      <%= member_task.collection_select :member_id, @members.select { |member| member.is_active }, :id, :screen_name, include_blank: "選択して下さい" %></h6>
   </div>
   <div class="field">
-    <%= link_to_remove_association "削除", member_task %>
+    <h6><b><%= member_task.label :task, 'タスク内容' %></b><br>
+    <%= member_task.text_area :task %></h6>
+  </div>
+  <div class="field">
+    <%= link_to_remove_association "削除", member_task, class: "btn btn-primary mr-2 text-dark" %>
   </div>
   <hr>
 </div>

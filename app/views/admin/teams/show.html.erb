@@ -1,1 +1,25 @@
-チーム内メンバー一覧
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+<h5><b><%= @team.team_name %> メンバー一覧</b></h5>
+
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th>名前</th>
+      <th>メールアドレス</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%= image_tag member.get_profile_image(100,100), class: "square-image" %></td>
+        <td><%= link_to member.screen_name, admin_member_path(member.id), class: "custom-link" %></td>
+        <td><%= member.email %></td>
+        <td><%= link_to "編集",edit_admin_member_path(member), class: "custom-link" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div><!--col-md-9-->

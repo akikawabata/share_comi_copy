@@ -1,38 +1,36 @@
-admin＞members＞new.html.erb（メンバー追加画面）
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>新規メンバー追加</b></h5>
 
-   <h2>新規メンバー追加</h2>
-<%= form_with model: @member, url: admin_members_path, method: :post do |f| %>
+    <%= form_with model: @member, url: admin_members_path, method: :post do |f| %>
 
-      <div class="field">
-        <%= f.label :名前 %><br>
-        <%= f.text_field :screen_name %>
-      </div>
+        <h6 class="h6-left"><b><%= f.label :名前 %></b><br>
+          <%= f.text_field :screen_name %>
+        </h6>
 
-      <div class="field">
-        <%= f.label :所属チーム %><br>
-        <%= f.collection_select(:team_id, @teams, :id, :team_name, include_blank: "選択して下さい" ) %>
+        <h6 class="h6-left"><b><%= f.label :所属チーム %><br>
+          <%= f.collection_select(:team_id, @teams, :id, :team_name, include_blank: "選択して下さい" ) %>
+        </h6>
 
-      </div>
+        <h6 class="h6-left"><b><%= f.label :メールアドレス %></b><br>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        </h6>
 
-      <div class="field">
-        <%= f.label :メールアドレス %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-      </div>
 
-      <div class="field">
-        <%= f.label :パスワード %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
+        <h6 class="h6-left"><b><%= f.label :パスワード %></b><br>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password" %>
+        </h6>
 
-      <div class="field">
-        <%= f.label :パスワード再入力 %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
+        <h6 class="h6-left"><b><%= f.label :パスワード再入力 %></b><br>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        </h6>
+        <br>
 
-      <div class="actions">
-        <%= f.submit "追加" %>
+      <div class="left-50px">
+        <%= f.submit "追加", class: "btn btn-success mr-2" %>
       </div>
     <% end %>
+</div><!--col-md-9-->

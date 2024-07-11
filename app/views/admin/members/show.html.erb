@@ -1,6 +1,33 @@
-admin＞members＞show.html.erb（メンバー詳細）
-<h2>タイトル</h2>
-<p><%= @member.screen_name %></p>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
 
-<h2>本文</h2>
-<p><%= @member.email %></p>
+  <div class="nested-fields">
+    <h4><b>メンバーアカウント情報</b></h4>
+      <div class="btn_edit_delete">
+        <%= link_to "退職設定へ", admin_confirm_admin_member_path(id: @member.id), class: "btn btn-primary" %>
+      </div><!--btn_edit_delete-->
+  </div><!--nested-fields-->
+
+  <div class="left-50px">
+    <%= image_tag @member.get_profile_image(100,100), class: "square-image-big" %>
+  </div>
+
+  <h6 class="h6-left"><b>名前</b></h6>
+  <div class="left-50px">
+    <%= @member.screen_name %>
+  </div>
+
+  <h6 class="h6-left"><b>所属チーム</b></h6>
+  <div class="left-50px">
+    <%= @member.team_name %>
+  </div>
+
+  <h6 class="h6-left"><b>メールアドレス</b></h6>
+    <div class="left-50px">
+      <%= @member.email %>
+    </div>
+
+  <div class="left-50px">
+    <%= link_to "編集", edit_admin_member_path(@member), class: "btn btn-success" %>
+   </div>
+</div><!--col-md-9-->

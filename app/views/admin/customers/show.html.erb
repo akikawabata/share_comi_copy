@@ -1,4 +1,31 @@
-<h1>Admin::ComiCustomers#show</h1>
-<p>Find me in app/views/public/members/show.html.erb</p>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>管理者アカウント情報</b></h5>
+
+  <h6 class="h6-left"><b>会社名</b></h6>
+  <div class="left-50px">
+      <%= @admin.company %>
+  </div>
+
+  <h6 class="h6-left"><b>会社住所</b></h6>
+  <div class="left-50px">
+    <%= @admin.company_address %>
+  </div>
+
+  <h6 class="h6-left"><b>管理者名</b></h6>
+  <div class="left-50px">
+    <%= @admin.administrator_name %>
+  </div>
+
+  <h6 class="h6-left"><b>メールアドレス</b></h6>
+  <div class="left-50px">
+    <%= @admin.email %>
+  </div>
+
+ <div class="left-50px">
+   <%= link_to "編集", edit_admin_customers_path, class: "btn btn-success mr-2" %>
+ </div>
+
+</div><!--col-md-9-->
 
 <!--ゲストユーザーはプロフィール編集を行えないようにする-->

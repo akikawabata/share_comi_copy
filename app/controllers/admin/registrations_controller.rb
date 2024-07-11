@@ -1,18 +1,19 @@
 # frozen_string_literal: true
 
 class Admin::RegistrationsController < Devise::RegistrationsController
-  # before_action :configure_sign_up_params, only: [:create]
+  before_action :configure_permitted_parameters, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
 
-  # POST /resource
-  # def create
-  #   super
-  # end
+  def new
+    super
+  end
+
+    # POST /resource
+  def create
+    super
+  end
 
   # GET /resource/edit
   # def edit
@@ -50,16 +51,24 @@ class Admin::RegistrationsController < Devise::RegistrationsController
   #   devise_parameter_sanitizer.permit(:account_update, keys: [:attribute])
   # end
 
+def after_sign_in_path_for(resource)
+  if resource.is_a?(Admin)
+    flash[:notice] = "管理者としてログインしました。"
+    admin_teams_path
+  else
+    flash[:notice] = "ログインしました。"
+    root_path
+  end
+end
+
+
+ private
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:company, :company_address, :administrator_name])
+  end
+
   # 新規登録後のリダイレクト先を指定
-    def after_sign_in_path_for(resource)
-      if current_admin
-        flash[:notice] = "ログインしました"
-        admin_teams_path  #　指定したいパスに変更
-      else
-        flash[:notice] = "新規登録が完了しました"
-        admin_teams_path  #　指定したいパスに変更
-      end
-    end
   # The path used after sign up for inactive accounts.
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)

@@ -1,31 +1,25 @@
 class Public::MemberTasksController < ApplicationController
-  def new
-    @project = Project.new
-    自分の所属しているメンバーのアカウント一覧
-    @members = Member.where(team_id: current_member.team_id)
+
+  def index
+    @member_tasks = current_member.member_tasks.where(making_status: ['not_started_yet', 'under_construction']).joins(:project).where(projects: { public_status: true })
   end
 
-  def create
-  #メンバーが新しく作った企画を保存する
-    if project = Project.new(project_params)
-      project.save
-      redirect_to public_projects_path
-    else
-      render :new
-    end
-  end
 
   def update
-    @project = Project.find(params[:id])
-    if @project.update(project_params)
-      redirect_to public_projects_path(params[:id])
+    @member_task = MemberTask.find(params[:id])
+    @project = @member_task.project
+    if @member_task.update(member_task_params)
+      flash[:notice] = "ステータスを更新しました"
+      redirect_to public_project_path(@project)
     else
-      render :edit
+      flash[:alert] = "ステータスの更新に失敗しました"
+      redirect_to public_project_path(@project)
     end
   end
 
-  def destroy
-    Project.destroy(params[:id])
-    redirect_to public_projects_path
+  private
+
+  def member_task_params
+    params.require(:member_task).permit(:making_status)
   end
 end

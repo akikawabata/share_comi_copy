@@ -1,55 +1,71 @@
-<h1>新規企画追加</h1>
+<div class="col-11 col-md-8 col-lg-9">
+  <div class="container">
+    <p><%= flash[:notice] %></p>
+    
+    <h5><b>新規企画追加</b></h5>
 
-<%# バリデーションメッセージの部分テンプレート %>
-<%= render 'layouts/error_message', model: @project %>
+    <%= form_with(model: @project, url: public_projects_path, local: true) do |form|  %>
+      <%= form.hidden_field :member_id, value: current_member.id %>
 
-<%# フォーム部分 %>
-<%= form_with model: @project, url: public_projects_path do |project| %>
-  <%# フォームのテンプレート %>
-<div class="field">
-  <%= project.label :project_name, 'タイトル' %><br>
-  <%= project.text_field :project_name %><br>
-  <%= project.label :project_details, 'タスク内容' %><br>
-  <%= project.text_field :project_details %><br>
-</div>
-<div class="details">
-  <%# トラックの追加フォームをするボタン %>
-  <%# 詳しいオプション : https://github.com/nathanvda/cocoon#link_to_add_association %>
-  <%= link_to_add_association '追加',
-                              # form_withのformタグ変数
-                              project,
-                              # フォームのデータを追加するモデル名
-                              :member_tasks,
-                              # 追加するフォームの部分テンプレート
-                              partial: "new_member_task.html",
-                              # オプション
-                              data: {
-                                # フォームを追加する場所の指定
-                                association_insertion_node: '#member_task-forms',
-                                # フォームを前後どの位置に追加するか。(初期値: before)
-                                association_insertion_method: 'after'
-                              },
-                              # フォームオブジェクトを指定する場合(初期値 : f)
-                              form_name: 'member_task',
-                              # 部分テンプレートに渡す変数があれば記述
-                              render_options: {
-                                locals: {
-                                  # 通常の部分テンプレートと同じ記述
-                                }
-                              }
-  %>
+        <%# フォーム部分 %>
+        <%= form_with model: @project, url: public_projects_path do |project| %>
+          <div class="field">
+            <h6 class="h6-left"><b><%= project.label :project_name, 'タイトル' %></b><br>
+              <%= project.text_field :project_name %></h6>
 
-  <hr>
-  <%# フォームを追加する場所。%>
-  <%#   link_to_add_associationのassociation_insertion_nodeで指定 %>
-  <div id="member_task-forms">
-    <%= project.fields_for :member_tasks do |member_task| %>
-      <% render 'new_member_task', member_task: member_task %>
-    <% end %>
-  </div>
+            <h6 class="h6-left"><b><%= project.label :project_details, '内容' %></b><br>
+              <%= project.text_area :project_details %></h6>
 
-</div>
-<div class="field">
-  <%= project.submit %>
-</div>
-<% end %>
+            <h6 class="h6-left"><b><%= project.label :start_date_time, '開始日時' %></b><br>
+              <%= project.datetime_field :start_date_time %></h6>
+
+            <h6 class="h6-left"><b><%= project.label :end_date_time, '終了日時' %></b><br>
+              <%= project.datetime_field :end_date_time %></h6>
+          </div>
+          <hr>
+
+          <%# 担当者追加フォーム：詳細 : https://github.com/nathanvda/cocoon#link_to_add_association %>
+          <div class="h6-left">
+            <%= link_to_add_association '担当者追加',
+              project,#form_withのformタグ変数
+              :member_tasks, #フォームのデータを追加するモデル名
+              partial: "new_member_task.html",#追加するフォームの部分テンプレート
+              data: {
+                association_insertion_node: '#member_task-forms',#フォームを追加する場所の指定
+                association_insertion_method: 'after'#フォームを前後どの位置に追加するか。(初期値: before)
+              },
+              form_name: 'member_task', #フォームオブジェクトを指定する場合(初期値 : f)
+              class: "btn btn-success mr-2" %>
+
+              <%#担当者追加する場所。%><%#link_to_add_associationのassociation_insertion_nodeで指定 %>
+
+              <div id="member_task-forms">
+                <%= project.fields_for :member_tasks do |member_task| %>
+
+                <% end %>
+              </div>
+            </div>
+            <hr>
+            </div>
+
+
+            <!--公開範囲-->
+            <h6 class="h6-left"><b>
+              <%= project.label:"公開範囲",class:"col-sm-4"%></b>
+              <br>
+
+              <%= project.radio_button :public_status, :true, checked: @project.public_status == true %>
+              <%= project.label :public_status, "公開", { value: :true, style: "display: inline-block;" } %>
+              <%= project.radio_button :public_status, :false, checked: @project.public_status == false %>
+              <%= project.label :public_status, "下書き保存", { value: :false, style: "display: inline-block;" } %>
+            </h6>
+            <br>
+
+            <div class="left-50px">
+              <%= project.submit '上記内容で追加', class: "btn btn-success" %>
+            </div>
+           </div><!--container-->
+          </div>
+     <% end %>
+ <% end %>
+ </div><!--col-md-9-->

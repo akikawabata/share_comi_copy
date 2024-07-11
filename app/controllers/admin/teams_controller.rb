@@ -8,7 +8,7 @@ class Admin::TeamsController < ApplicationController
     team = Team.new(team_params)
     team.admin_id = current_admin.id
     team.save
-    redirect_to admin_teams_path
+    redirect_to admin_teams_path, notice: "チームを追加しました。右上の「メンバー追加」からメンバーを追加してチームの選択をしてください"
   end
 
   def index
@@ -18,7 +18,9 @@ class Admin::TeamsController < ApplicationController
   end
 
   def show
-    # redirect_to admin_teams_destroy_path
+    # チームに所属しているメンバー
+    @team = Team.find(params[:id])
+    @members = @team.members
   end
 
   def edit

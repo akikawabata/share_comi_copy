@@ -1,0 +1,26 @@
+
+[1mFrom:[0m /home/ec2-user/environment/share_comi/app/controllers/public/projects_controller.rb:13 Public::ProjectsController#create:
+
+     [1;34m8[0m: [32mdef[0m [1;34mcreate[0m
+     [1;34m9[0m:   @members = [1;34;4mMember[0m.where([35mteam_id[0m: current_member.team_id)
+    [1;34m10[0m: 
+    [1;34m11[0m:   @project = [1;34;4mProject[0m.new(project_params)
+    [1;34m12[0m:   binding.pry
+ => [1;34m13[0m:   @project.public_status = params[[33m:project[0m][[33m:public_status[0m]
+    [1;34m14[0m:   [32mif[0m params[[33m:project[0m][[33m:public_status[0m] == [1;36mtrue[0m[1;34m#trueで設定されたら[0m
+    [1;34m15[0m:     [32mif[0m @project.save([35mcontext[0m: [33m:publicize[0m)
+    [1;34m16[0m:       redirect_to public_project_path(@project), [35mnotice[0m: [31m[1;31m"[0m[31m追加しました[1;31m"[0m[31m[0m
+    [1;34m17[0m:     [32melse[0m
+    [1;34m18[0m:       render [33m:new[0m, [35malert[0m: [31m[1;31m"[0m[31m追加できませんでした。入力内容をご確認のうえ再度お試しください[1;31m"[0m[31m[0m
+    [1;34m19[0m:     [32mend[0m
+    [1;34m20[0m:   [32melse[0m
+    [1;34m21[0m:     @project.public_status = [1;36mfalse[0m
+    [1;34m22[0m: 
+    [1;34m23[0m:     [32mif[0m @project.save
+    [1;34m24[0m:       redirect_to public_project_candidates_path(current_member), [35mnotice[0m: [31m[1;31m"[0m[31m下書き保存しました[1;31m"[0m[31m[0m
+    [1;34m25[0m:     [32melse[0m
+    [1;34m26[0m:       render [33m:new[0m, [35malert[0m: [31m[1;31m"[0m[31m追加できませんでした。入力内容をご確認のうえ再度お試しください[1;31m"[0m[31m[0m
+    [1;34m27[0m:     [32mend[0m
+    [1;34m28[0m:   [32mend[0m
+    [1;34m29[0m: [32mend[0m
+

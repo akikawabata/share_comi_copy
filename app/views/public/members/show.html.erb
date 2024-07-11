@@ -1,10 +1,29 @@
-<h1>Public::Members#show</h1>
-<p>Find me in app/views/public/members/show.html.erb</p>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>アカウント情報</b></h5>
 
-<!--ゲストユーザーはプロフィール編集を行えないようにする-->
-  <%# unless @member.guest_member? %>
-  <!--<div class="row">-->
-    <%#=link_to "",edit_public_members_path(member),class: "btn btn-outline-secondary btn-block fas fa-user-cog edit_user_#{member.id}" %>
-  <!--</div>-->
-    <%# end %>
-  
+  <div class="tblr-px"><%= image_tag @member.get_profile_image(150,150), class: "square-image-big" %></div>
+
+  <h6 class="h6-left"><b>名前</b><br></h6>
+  <div class="left-50px">
+    <%= @member.screen_name %>
+  </div>
+
+  <h6 class="h6-left"><b>所属</b></h6>
+  <div class="left-50px">
+    <%= @member.team_name %>
+  </div>
+
+  <h6 class="h6-left"><b>メールアドレス</b></h6>
+  <div class="left-50px">
+    <%= @member.email %>
+  </div>
+
+  <% if @member == current_member%>
+  <div class="tblr-px">
+    <%= link_to "編集", edit_public_member_path(@member), class: "btn btn-success" %>
+  </div>
+  <% end %>
+
+</div><!--col-md-9-->
+

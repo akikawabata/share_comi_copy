@@ -1,62 +1,70 @@
-<%- if request.path.match(/\/admin(\/)?/) %>
-  <h2>管理者ログイン</h2>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<div class="text-center">
+  <div class="col-md-12">
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+    <% if flash[:alert] %>
+      <div class="alert alert-danger">
+      <%= flash[:alert] %>
+      </div>
+    <% end %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <!--管理者ログイン-->
+      <%- if request.path.match(/\/admin(\/)?/) %>
+        <h4><b>管理者ログイン</b></h4>
+
+          <%= form_for(Admin.new, url: admin_session_path) do |f| %>
+
+            <h6><b><%= f.label :メールアドレス %></b><br>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %></h6>
+
+            <h6><b><%= f.label :パスワード %></b><br>
+              <%= f.password_field :password, autocomplete: "current-password" %></h6>
+
+            <h6><% if devise_mapping.rememberable? %>
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              <% end %>
+            </h6>
+            <br>
+
+            <%= f.submit "ログイン", class: "btn btn-success" %>
+
+          <% end %><!--f-->
+      <% end %><!--(/\/admin(\/)?/)-->
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
 
-  <%= link_to "管理者ゲストログイン(閲覧用)", admin_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
-  </div>
-<% end %>
+    <!--メンバーログイン-->
+    <%- if request.path.match(/\/members(\/)?/) %>
 
-<%- if request.path.match(/\/members(\/)?/) %>
-  <h2>メンバーログイン</h2>
-  <p>管理者から付与されたメールアドレスとパスワードを</p>
-  <p>ご入力ください</p>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <h4><b>メンバーログイン</b></h4>
+        <div class="left-50px-pin">
+          <p>管理者から付与されたメールアドレスとパスワードを</p>
+          <p>ご入力ください</p>
+       </div>
 
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+      <%#= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= form_for(Member.new, url: member_session_path) do |f| %>
+        <h6><b><%= f.label :メールアドレス %></b><br>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %></h6>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
+        <h6><b><%= f.label :パスワード %><br />
+        <%= f.password_field :password, autocomplete: "current-password" %></h6>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
 
-  <%= link_to "メンバーゲストログイン(閲覧用)", members_guest_sign_in_path, class: "btn btn-secondary btn-sm btn-block mb-3 sign_in", method: :post %>
-  </div>
-<% end %>
-  
+        <% if devise_mapping.rememberable? %>
 
-  
+          <h6><%= f.check_box :remember_me %>
+          <%= f.label :remember_me %></h6>
+
+        <% end %>
+        <br>
+
+          <%= f.submit "ログイン", class: "btn btn-success" %>
+
+        <% end %><!--devise-->
+      <% end %><!--(/\/members(\/)?-->
+
+    <br>
+    <p>※メンバーは管理者画面の「メンバー追加」から登録できます</p>
+  </div><!--col-md-12-->
+</div><!--text-center-->

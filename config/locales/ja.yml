@@ -28,6 +28,25 @@
 #
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
+ja:
+  enums:
+    member_task:
+      making_status:
+        not_started_yet: "未着手"
+        under_construction: "制作中"
+        completion: "完了"
+  activerecord:
+    attributes:
+      admin:
+        company: 会社名
+        company_address:	会社の住所
+        administrator_name:	管理者名
+        email:	メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認用）
+  errors:
+    messages:
+      not_saved: "未入力の項目があります。"
 
 en:
   hello: "Hello world"

@@ -1,2 +1,19 @@
-<h1>Admin::Members#confirm</h1>
-<p>Find me in app/views/admin/members/confirm.html.erb</p>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>メンバー退職設定</b></h5>
+
+  <div class="left-50px">
+    <%= image_tag @member.get_profile_image(100,100), class: "square-image-big" %>
+  </div>
+
+  <h6 class="h6-left"><b><%= @member.screen_name %></b>さんが追加した企画、コメントはそのまま残ります。</h6>
+  <h6 class="h6-left">退職設定にすると<b><%= @member.screen_name %></b>さんはログインできなくなります。</h6>
+  <h6 class="h6-left"><b><%= @member.screen_name %></b>さんを退職設定にしますか？</h6>
+  <br>
+
+  <div class="left-50px">
+    <%= link_to "退職設定にする", admin_member_path(@member.id), class: "btn btn-primary mr-2 text-dark", method: :delete, "data-confirm" => "本当に退職設定にしますか？" %>
+    <%= link_to "退職設定にしない", admin_member_path(@member), class: "btn btn-success" %>
+  </div>
+
+</div>

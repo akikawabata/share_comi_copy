@@ -1,2 +1,9 @@
-<h1>Public::ProjectSchedules#index</h1>
-<p>Find me in app/views/public/project_schedules/index.html.erb</p>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <script>
+    let eventData = <%= raw @projects.to_json %>;
+    console.log('Event Data:', eventData);
+  </script>
+
+  <div id="calendar"></div>
+</div><!--col-md-9-->

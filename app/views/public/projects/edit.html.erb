@@ -1,8 +1,87 @@
-<h1>企画編集</h1>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <div class="container">
+    <h5><b>企画編集</b></h5>
 
-<%# バリデーションメッセージの部分テンプレート %>
-<%= render 'layouts/error_messages', model: @project %>
+    <%= form_with model: @project, url: public_project_path(@project), method: :patch do |project| %>
+    <div class="field">
+      <h6 class="h6-left"><b>
+        <label for="inputTitle">タイトル</label></b><br>
+        <%= project.text_field :project_name, autofocus: true, id:"inputName"%>
+      </h6>
+  
+      <h6 class="h6-left"><b>
+      <label for="inputDetails">内容</label></b><br>
+          <%= project.text_area :project_details, autofocus: true, id:"inputDetails" %>
+      </h6>
+  
+      <h6 class="h6-left"><b>
+      <label for="inputDetails">開催日</label></b><br>
+          <%= project.datetime_field :start_date_time, autofocus: true, id:"inputDetails" %>
+      </h6>
+  
+      <h6 class="h6-left"><b>
+      <label for="inputDetails">終了日</label></b><br>
+          <%= project.datetime_field :end_date_time, autofocus: true, id:"inputDetails" %>
+      </h6>
+    </div>
+    <br>
+    <hr>
 
-<%= form_with model: @project do |project| %>
-  <%= render 'form', project: project %>
-<% end %>
+  <%# 担当者追加フォーム %>
+      <div class="left-50px">
+        <%= link_to_add_association '担当者と追加',
+          project,
+          :member_tasks, #フォームのデータを追加するモデル名
+          partial: "edit_member_task.html",#追加するフォームの部分テンプレート
+          data: {
+            association_insertion_node: '#member_task-forms',#フォームを追加する場所の指定
+            association_insertion_method: 'after'#フォームを前後どの位置に追加するか。(初期値: before)
+          },
+          form_name: 'member_task', #フォームオブジェクトを指定する場合(初期値 : f)-->
+          class: "btn btn-success mr-2" %> 
+      <%#担当者追加する場所 %>
+      
+      <div id="member_task-forms">
+        <div class="nested-fields">
+          <%= project.fields_for :member_tasks do |member_task| %>
+
+          <div class="field">
+            <%# link_to_add_associationのform_nameで指定した名前。(初期値 : f)  %>
+            <h6><b><%= member_task.label :member_id, '担当者' %></b><br>
+            <%= member_task.collection_select :member_id, @members, :id, :screen_name, include_blank: "選択して下さい"  %></h6>
+            </div>
+
+            <div class="field">
+              <h6><b><%= member_task.label :task, 'タスク内容' %></b><br>
+              <%= member_task.text_area :task %></h6>
+            </div>
+            <div class="field">
+              <%= link_to_remove_association "削除", member_task, class: "btn btn-primary mr-2 text-dark" %>
+            </div>
+            <hr>
+          </div>
+          <% end %>
+      </div>
+      </div>
+      <hr>
+
+      <!--公開範囲-->
+            <h6 class="h6-left"><b>
+              <%= project.label:"公開範囲",class:"col-sm-4"%></b>
+              <br>
+              
+              <label for="inputRelease">公開</label>
+                <%= project.radio_button :public_status, true, checked: (@project.public_status == true), id: "inputRelease" %>
+              <label for="inputRelease">下書き保存</label>
+              <%= project.radio_button :public_status, false, checked: (@project.public_status == false), id: "inputDraft" %>
+            </h6>
+            <br>
+            
+            <div class="left-50px">
+              <%= project.submit "上記内容で更新", class: "btn btn-success" %>
+            </div>
+      <% end %>
+            </div>
+        </div>
+      </div>

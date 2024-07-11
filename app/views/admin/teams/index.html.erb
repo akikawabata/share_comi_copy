@@ -1,21 +1,29 @@
-
-<h1>チーム一覧</h1>
-
-
-
-<table>
-  <thead>
-    <tr>
-      <th>チーム名</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @teams.each do |team| %>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>チーム一覧</b></h5>
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to team.team_name, admin_team_path(team.id) %></td>
-        <td><%= link_to "編集",edit_admin_team_path(team)  %></td>
+        <th>チーム名</th>
+        <th></th>
       </tr>
+    </thead>
+    <tbody>
+      <% @teams.each do |team| %>
+        <tr>
+          <td><%= link_to team.team_name, admin_team_path(team.id), class: "custom-link" %></td>
+          <td><%= link_to "編集",edit_admin_team_path(team), class: "custom-link" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class ="notice">
+    <% if @teams.count == 0 %>
+      <p>チームが追加されていません。</p>
+      <p>まずは右上「チーム追加」からチームを追加してください。</p>
+      <% else %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+
+</div><!--col-md-9-->

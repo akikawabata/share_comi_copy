@@ -1,1 +1,152 @@
 @use '~bootstrap/scss/bootstrap';
+
+// フォント調整(タイトル)
+.fc-toolbar-title { //カレンダー年月
+  color: #707070;
+}
+
+h4 {
+  padding: 8px 30px 20px 30px ;
+}
+
+// フォント調整
+h1,h4,h5,h6,p,span,table,.left-50px,.left-50px-pin,.select-color {
+  color: #707070 !important;
+  font-family: sans-serif;
+}
+
+.logo-2 {
+  font-size: 14px;
+}
+
+.navbar-dark {
+  background-color: #EDEDF2 !important;
+}
+
+.fs-5 {
+  color: #707070;
+}
+
+.text-dark {
+  color: #707070 !important;
+}
+
+.btn-success {
+  background-color: #6B86B9 !important;
+ border-color: #6B86B9 !important;
+}
+
+.btn-primary {
+  background-color: #EDEDF2 !important;
+ border-color: #EDEDF2 !important;
+ color: #707070 !important;
+}
+
+.btn-secondary {
+  background-color: #96A7C8 !important;
+  border-color: #96A7C8 !important;
+}
+
+.btn {
+  margin-bottom: 10px;
+}
+
+.square-image {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-position: center;
+}
+
+.square-image-big {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  background-position: center;
+}
+
+.btn-custom-size {
+  width: 200px;
+  height: 50px;
+  padding: 10px 20px;
+}
+
+.custom-link {
+    color: #6B86B9;
+}
+
+.fc .fc-button-primary:disabled {
+  background-color: #6B86B9;
+  border-color: #6B86B9;
+}
+
+.fc .fc-button-group > .fc-button {
+    background-color: #6B86B9;
+  border-color: #6B86B9;
+  color: white;
+}
+
+.fc .fc-button .fc-icon {
+  color: white;
+}
+// テーブル調整
+.notice {
+   padding: 12px 50px 12px 50px;
+}
+
+th {
+  border-bottom: 1px solid #EDEDF2;
+  padding: 0px 30px 12px 50px;
+}
+
+table, td {
+  border-bottom: 1px solid #EDEDF2;
+  padding: 12px 30px 12px 50px;
+}
+
+// 幅調整
+
+h5 {
+   padding: 12px 0px 30px 30px;
+}
+
+.h6-left {
+padding: 8px 0px 0px 50px;
+}
+
+.left-50px {
+   padding: 0px 30px 35px 50px;
+}
+
+.left-50px-pin {
+   padding-left: 50px;
+}
+
+.tblr-px {
+   padding: 12px 30px 20px 50px;
+}
+
+.title {
+display: flex; align-items: center;
+}
+
+.btn_edit_delete {
+  margin-left: auto;
+}
+
+.field {
+  width: 120%;
+}
+
+.nested-fields {
+display: flex; align-items: center;
+}
+
+.sidebar {
+  height: 100vh !important;/* サイドバーの高さを画面の高さに合わせる */
+  overflow-y: auto !important;/* サイドバーが画面からはみ出た場合にスクロールできるようにする */
+}
+
+ul {
+   list-style: none;//リストマーク（・）削除
+}

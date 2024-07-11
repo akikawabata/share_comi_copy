@@ -1,30 +1,49 @@
-admin  > members > index.erb (メンバー一覧)
-<h1>全てのメンバー一覧</h1>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>全てのメンバー一覧</b></h5>
 
-
-
-<table>
-  <thead>
-    <tr>
-      <th></th>
-      <th>メンバー名</th>
-      <th>所属チーム</th>
-      <th></th>
-
-    </tr>
-  </thead>
-  <tbody>
-    <% @members.each do |member| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= image_tag member.get_profile_image(100,100) %></td>
-        <td><%= link_to member.screen_name, admin_member_path(member) %> </td>
-            <% if member.team %>
-          <td><%= member.team.team_name %></td>
-            <% else %>
-        <td>無所属</td>
-            <% end %>
-        <td><%= link_to "編集", edit_admin_member_path(member) %></td>
+        <th></th>
+        <th>メンバー名</th>
+        <th>所属チーム</th>
+        <th>メールアドレス</th>
+        <th>メンバーステータス</th>
+        <th></th>
       </tr>
+    </thead>
+
+    <tbody>
+      <% @members.each do |member| %>
+        <tr>
+          <td><%= image_tag member.get_profile_image(100,100), class: "square-image" %></td>
+
+          <td><%= link_to member.screen_name, admin_member_path(member) %> </td>
+
+            <% if member.team %>
+              <td><%= member.team.team_name %></td>
+            <% else %>
+              <td>無所属</td>
+            <% end %>
+          <td><%= member.email %></td>
+              <% if member.is_active %>
+            <td><%=  "在籍中" if member.is_active %></td>
+              <% else %>
+          <td>退職</td>
+              <% end %>
+          <td><%= link_to "編集", edit_admin_member_path(member) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class ="notice">
+    <% if @members.count == 0 %>
+      <p>メンバーが追加されていません。</p>
+      <p>右上のメンバー追加からアカウントを制作してください。</p>
+      <% else %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+
+</div>

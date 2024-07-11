@@ -1,17 +1,39 @@
-<h1>すべての企画一覧</h1>
-<%# 現在の登録数を表示する。“#{}”は、Rubyの式展開 %>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>すべての企画一覧</b></h5>
+  <br>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>企画タイトル</th>
+        <th>開催日時</th>
+        <th>終了日時</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @projects.each do |project| %>
+        <tr>
+          <td><%= link_to project.project_name, public_project_path(project.id), class: "custom-link" %></td>
+          <td><%= project.start_date_time&.strftime("%Y/%m/%d %H:%M") %>
+                <% if project.start_date_time.nil?  %>
+                  <p>未設定</p>
+                <% end %>
+          </td>
+          <td><%= project.end_date_time&.strftime("%Y/%m/%d %H:%M") %>
+                <% if project.end_date_time.nil?  %>
+                  <p>未設定</p>
+                <% end %>
+          </td>
+      <% end %>
+        </tr>
+   <tbody>
+  </table>
 
-<%# @albumsでレコードが1件もない場合の分岐 %>
-<% if @projects.count == 0 %>
-  <%# @albumsにデータがない場合の表示 %>
-  <p>
-    企画が追加されていません
-  </p>
-<% else %>
-  <%# @albumsにレコードがある場合、タイトルを表示する %>
-  <% @projects.each do |project| %>
-    <p>
-      <%= link_to project.project_name, public_project_path(project.id) %>
-    </p>
-  <% end %>
-<% end %>
+  <div class ="notice">
+    <% if @projects.count == 0 %>
+      <p>企画が追加されていません</p>
+      <% else %>
+    <% end %>
+  </div>
+  </div><!--col-md-9-->

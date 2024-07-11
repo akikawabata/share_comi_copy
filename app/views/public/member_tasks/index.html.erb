@@ -1,3 +1,33 @@
-<h1>Public::MemberTasks#index</h1>
-public/member_tasks
-<p>Find me in app/views/public/member_tasks/index.html.erb</p>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+  <h5><b>自分の担当一覧</b></h5>
+  <br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>タスク内容</th>
+        <th>開催日時</th>
+        <th>制作ステータス</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% if @member_tasks.any? %>
+        <% @member_tasks.each do |member_task| %>
+            <tr>
+              <td><%= link_to member_task.task, public_project_path(member_task.project.id), class: "custom-link" %></td>
+              <td><%= member_task.project.start_date_time&.strftime("%Y/%m/%d %H:%M") %></td>
+              <td><%= member_task.making_status_i18n %></td>
+            </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+  <div class ="notice">
+    <% if @member_tasks.count == 0 %>
+      <p>担当タスクはありません</p>
+      <% else %>
+    <% end %>
+  </div>
+</div>

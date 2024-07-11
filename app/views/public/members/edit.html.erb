@@ -1,2 +1,34 @@
-<h1>Public::Members#edit</h1>
-<p>Find me in app/views/public/members/edit.html.erb</p>
+<div class="col-11 col-md-8 col-lg-9">
+  <p><%= flash[:notice] %></p>
+<h5><b>アカウント情報編集</b></h5>
+  <div class="left-50px">
+    <%= form_with model: @member, url:public_member_path, method: :patch do |f| %>
+    <%= f.file_field :profile_image %>
+  </div>
+
+  <h6 class="h6-left"><b><label for="inputName">名前</label></b></h6>
+    <div class="left-50px">
+      <%= f.text_field :screen_name %>
+    </div>
+
+  <h6 class="h6-left"><b><label for="inputTeam">所属チーム</label></b></h6>
+    <div class="left-50px">
+      <%= @member.team_name %>
+    </div>
+
+  <h6 class="h6-left"><b><label for="inputEmail">メールアドレス</label></b></h6>
+    <div class="left-50px">
+      <%= @member.email %>
+    </div>
+
+
+  <div class="left-50px">
+    <%= f.submit "変更を保存", class: "btn btn-success" %>
+    <% end %>
+  </div>
+  <br>
+<div class="left-50px">
+<p>メールアドレス、所属は</p>
+<p>管理者にご変更いただくようお願いします</p>
+  </div>
+</div><!--col-md-9-->

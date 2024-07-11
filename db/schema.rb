@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_05_11_075503) do
+ActiveRecord::Schema.define(version: 2024_06_24_091755) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -55,11 +55,19 @@ ActiveRecord::Schema.define(version: 2024_05_11_075503) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.datetime "start"
+    t.datetime "end"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "member_tasks", force: :cascade do |t|
     t.integer "project_id", null: false
     t.integer "member_id", null: false
     t.text "task"
-    t.integer "making_status"
+    t.integer "making_status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["member_id"], name: "index_member_tasks_on_member_id"
@@ -82,14 +90,28 @@ ActiveRecord::Schema.define(version: 2024_05_11_075503) do
     t.index ["team_id"], name: "index_members_on_team_id"
   end
 
+  create_table "post_comments", force: :cascade do |t|
+    t.integer "project_id"
+    t.integer "member_id"
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_post_comments_on_member_id"
+    t.index ["project_id"], name: "index_post_comments_on_project_id"
+  end
+
   create_table "projects", force: :cascade do |t|
+    t.integer "member_id", null: false
+    t.integer "team_id", null: false
     t.string "project_name"
     t.string "project_details"
     t.datetime "start_date_time"
     t.datetime "end_date_time"
-    t.boolean "public_status"
+    t.boolean "public_status", default: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_id"], name: "index_projects_on_member_id"
+    t.index ["team_id"], name: "index_projects_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -105,5 +127,9 @@ ActiveRecord::Schema.define(version: 2024_05_11_075503) do
   add_foreign_key "member_tasks", "members"
   add_foreign_key "member_tasks", "projects"
   add_foreign_key "members", "teams"
+  add_foreign_key "post_comments", "members"
+  add_foreign_key "post_comments", "projects"
+  add_foreign_key "projects", "members"
+  add_foreign_key "projects", "teams"
   add_foreign_key "teams", "admins"
 end

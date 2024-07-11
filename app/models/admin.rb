@@ -6,6 +6,11 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 # アイコン画像設定
   has_one_attached :profile_image
+  
+ validates :company, presence: true
+ validates :company_address, presence: true
+ validates :administrator_name, presence: true
+ 
 
 def get_profile_image(width, height)
   unless profile_image.attached?
@@ -20,7 +25,9 @@ GUEST_ADMIN_EMAIL = "guest@example.com"
   def self.guest#self.はAdminのこと
     find_or_create_by!(email: GUEST_ADMIN_EMAIL) do |admin|
       admin.password = SecureRandom.urlsafe_base64
-      admin.administrator_name = "guestadmin"
+      admin.administrator_name = "ゲスト管理者"
+      admin.company = "株式会社シェアコミ"
+      admin.company_address = "東京都シェア区コミ町1-1"
     end
   end
 

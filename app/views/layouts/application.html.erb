@@ -107,7 +107,8 @@
     <% if (request.path != root_path) && (request.path !~ /\/sign_in(\/)?/) && (request.path !~ /\/sign_up(\/)?/) %>
       <div class="container-fluid">
         <div class="row">
-          <div class="bg-light col-1 col-sm-1 col-md-4 col-lg-3">
+          <!--<div class="bg-light col-3 col-3 sm-2 col-md-3 col-lg-3" >-->
+          <div class="bg-light col-2 col-sm-3 col-md-3 col-lg-3">
             <div class="sidebar">
               <ul class="nav nav-pills flex-column">
                 
@@ -119,7 +120,7 @@
                     <li class="nav-item py-2 py-sm-0">
                       <%= link_to public_member_tasks_path, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-table-list fa-lg"></i>
-                        <span class="fs-3 ms-3 d-none d-sm-inline">　自分のタスク一覧</span>
+                        <span class="fs-4 ms-3 d-none d-sm-inline">　自分のタスク一覧</span>
                        (<%= @member_tasks_count %>)件
                       <% end %>
                     </li>
@@ -170,7 +171,7 @@
             　       <li class="nav-item py-3 py-sm-0">
                       <%= link_to admin_teams_path, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-solid fa-flag fa-lg"></i>
-                        <span class="fs-4 ms-3 d-none d-sm-inline">　チーム一覧</span>
+                        <span class="fs-4 md-1 d-none d-sm-inline">　チーム一覧</span>
                       <% end %>
                     </li>
 

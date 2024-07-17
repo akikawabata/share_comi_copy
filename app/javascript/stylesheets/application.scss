@@ -147,6 +147,11 @@ display: flex; align-items: center;
   overflow-y: auto !important;/* サイドバーが画面からはみ出た場合にスクロールできるようにする */
 }
 
+.left-100 {
+//   l企画編集画面用
+   padding-left: 200px;
+}
+
 // ul {
 //   list-style: none;//リストマーク（・）削除:q
 // }

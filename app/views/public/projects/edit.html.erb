@@ -67,18 +67,19 @@
       <hr>
 
       <!--公開範囲-->
-            <h6 class="h6-left"><b>
-              <%= project.label:"公開範囲",class:"col-sm-4"%></b>
-              <br>
 
-              <label for="inputRelease">公開</label>
-                <%= project.radio_button :public_status, true, checked: (@project.public_status == true), id: "inputRelease" %>
-              <label for="inputRelease">下書き保存</label>
-              <%= project.radio_button :public_status, false, checked: (@project.public_status == false), id: "inputDraft" %>
-            </h6>
-            <br>
 
             <div class="left-50px">
+              <h6 class="h6-left"><b>
+                <%= project.label:"公開範囲",class:"col-sm-4"%></b>
+                <br>
+
+                <label for="inputRelease">公開</label>
+                  <%= project.radio_button :public_status, true, checked: (@project.public_status == true), id: "inputRelease" %>
+                <label for="inputRelease">下書き保存</label>
+                <%= project.radio_button :public_status, false, checked: (@project.public_status == false), id: "inputDraft" %>
+              </h6>
+              <br>
               <%= project.submit "上記内容で更新", class: "btn btn-success" %>
             </div>
       <% end %>

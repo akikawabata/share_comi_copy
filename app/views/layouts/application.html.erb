@@ -38,13 +38,13 @@
             <span><b>Share Comi</span><span class="logo-2">メンバー</span></b>
           </a>
         <% end %>
-        
+
         <% if request.path == root_path %>
           <a class="navbar-brand" href="/">
             <span><b>Share Comi</b></span>
           </a>
         <% end %>
-        
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -53,7 +53,7 @@
           <ul class="navbar-nav ml-auto">
             <!--メンバーのヘッダー-->
             <% if member_signed_in? %>
-            　<%- if request.path.match(/\/public(\/)?/) %>
+              <%- if request.path.match(/\/public(\/)?/) %>
 
                 <%= link_to new_public_project_path, class: 'btn btn-success btn-sm btn-block mt-2 mr-3 sign_in text-nowrap' do %>
                   <i class="fa-solid fa-plus"></i> 企画追加
@@ -69,7 +69,7 @@
 
             <!--admiｎのヘッダー-->
             <% if admin_signed_in? %>
-            　<%- if request.path.match(/\/admin(\/)?/) %>
+              <%- if request.path.match(/\/admin(\/)?/) %>
 
                 <%= link_to new_admin_team_path, class: 'btn btn-success btn-sm btn-block mt-2 mr-3 sign_in btn-lg text-nowrap' do %>
                   <i class="fa-solid fa-plus"></i> チーム追加
@@ -79,7 +79,7 @@
                   <i class="fa-solid fa-plus"></i> メンバー追加
                 <% end %>
 
-            　   <%= link_to admin_customers_path do %>
+                 <%= link_to admin_customers_path do %>
                   <%= image_tag current_admin.get_profile_image(100,100), class: "square-image" %></td>
                 <% end %>
 
@@ -111,16 +111,16 @@
           <div class="bg-light col-2 col-sm-3 col-md-3 col-lg-3">
             <div class="sidebar">
               <ul class="nav nav-pills flex-column">
-                
+
 
                 <!--メンバーのサイドバー-->
                 <% if member_signed_in? %>
-               　  <%- if request.path.match(/\/public(\/)?/) %>
+                   <%- if request.path.match(/\/public(\/)?/) %>
 
                     <li class="nav-item py-2 py-sm-0">
                       <%= link_to public_member_tasks_path, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-table-list fa-lg"></i>
-                        <span class="fs-4 ms-3 d-none d-sm-inline">　自分のタスク一覧</span>
+                        <span class="fs-4 ms-3 d-none d-sm-inline">  自分のタスク一覧</span>
                        (<%= @member_tasks_count %>)件
                       <% end %>
                     </li>
@@ -128,14 +128,14 @@
                     <li class="nav-item py-2 py-sm-0">
                       <%= link_to public_projects_path, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-clipboard fa-lg"></i>
-                        <span class="fs-4 ms-3 d-none d-sm-inline">　全ての企画一覧</span>
+                        <span class="fs-4 ms-3 d-none d-sm-inline">  全ての企画一覧</span>
                       <% end %>
                     </li>
 
                     <li class="nav-item py-2 py-sm-0">
                       <%= link_to public_project_candidates_path, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-solid fa-pen fa-lg"></i>
-                        <span class="fs-4 ms-3 d-none d-sm-inline">　下書き一覧</span>
+                        <span class="fs-4 ms-3 d-none d-sm-inline">  下書き一覧</span>
                        (<%= @project_drafts_count %>)件
                       <% end %>
                     </li>
@@ -143,21 +143,21 @@
                     <li class="nav-item py-2 py-sm-0">
                       <%= link_to public_project_schedules_path, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-solid fa-calendar fa-lg"></i>
-                        <span class="fs-4 ms-3 d-none d-sm-inline">　企画カレンダー</span>
+                        <span class="fs-4 ms-3 d-none d-sm-inline">  企画カレンダー</span>
                       <% end %>
                     </li>
 
                     <li class="nav-item py-3 py-sm-0">
                       <%= link_to public_member_lists_path, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-users fa-lg"></i>
-                        <span class="fs-4 ms-3 d-none d-sm-inline">　メンバー一覧</span>
+                        <span class="fs-4 ms-3 d-none d-sm-inline">  メンバー一覧</span>
                       <% end %>
                     </li>
 
                     <li class="nav-item py-3 py-sm-0">
                       <%= link_to destroy_member_session_path, method: :delete, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-sign-out-alt fa-lg"></i>
-                        <span class="fs-4 ms-3 d-none d-sm-inline">　ログアウト</span>
+                        <span class="fs-4 ms-3 d-none d-sm-inline">  ログアウト</span>
                       <% end %>
                     </li>
 
@@ -166,26 +166,26 @@
 
                 <!--アドミンのサイドバー-->
                 <% if admin_signed_in? %>
-            　     <%- if request.path.match(/\/admin(\/)?/) %>
+                   <%- if request.path.match(/\/admin(\/)?/) %>
 
-            　       <li class="nav-item py-3 py-sm-0">
+                     <li class="nav-item py-3 py-sm-0">
                       <%= link_to admin_teams_path, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-solid fa-flag fa-lg"></i>
-                        <span class="fs-4 md-1 d-none d-sm-inline">　チーム一覧</span>
+                        <span class="fs-4 md-1 d-none d-sm-inline">  チーム一覧</span>
                       <% end %>
                     </li>
 
                     <li class="nav-item py-2 py-sm-0">
                       <%= link_to admin_members_path, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-users fa-lg"></i>
-                        <span class="fs-4 ms-3 d-none d-sm-inline">　メンバー一覧</span>
+                        <span class="fs-4 ms-3 d-none d-sm-inline">  メンバー一覧</span>
                       <% end %>
                     </li>
 
                     <li class="nav-item py-2 py-sm-0">
                       <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-dark' do %>
                         <i class="fs-5 fa fa-sign-out-alt fa-lg"></i>
-                        <span class="fs-4 ms-3 d-none d-sm-inline">　ログアウト</span>
+                        <span class="fs-4 ms-3 d-none d-sm-inline">  ログアウト</span>
                       <% end %>
                     </li>
 
@@ -201,6 +201,6 @@
           <%= yield %>
         </div><!--row flex-nowrap-->
       </div><!--container-fluid-->
-   <scropt src=".Bootstrap/js/bootstrap.bundle.js"></scropt>
+   <script src=".Bootstrap/js/bootstrap.bundle.js"></script>
   </body>
 </html>

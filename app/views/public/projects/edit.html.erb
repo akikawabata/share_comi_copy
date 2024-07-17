@@ -9,17 +9,17 @@
         <label for="inputTitle">タイトル</label></b><br>
         <%= project.text_field :project_name, autofocus: true, id:"inputName"%>
       </h6>
-  
+
       <h6 class="h6-left"><b>
       <label for="inputDetails">内容</label></b><br>
           <%= project.text_area :project_details, autofocus: true, id:"inputDetails" %>
       </h6>
-  
+
       <h6 class="h6-left"><b>
       <label for="inputDetails">開催日</label></b><br>
           <%= project.datetime_field :start_date_time, autofocus: true, id:"inputDetails" %>
       </h6>
-  
+
       <h6 class="h6-left"><b>
       <label for="inputDetails">終了日</label></b><br>
           <%= project.datetime_field :end_date_time, autofocus: true, id:"inputDetails" %>
@@ -39,9 +39,9 @@
             association_insertion_method: 'after'#フォームを前後どの位置に追加するか。(初期値: before)
           },
           form_name: 'member_task', #フォームオブジェクトを指定する場合(初期値 : f)-->
-          class: "btn btn-success mr-2" %> 
+          class: "btn btn-success mr-2" %>
       <%#担当者追加する場所 %>
-      
+
       <div id="member_task-forms">
         <div class="nested-fields">
           <%= project.fields_for :member_tasks do |member_task| %>
@@ -70,14 +70,14 @@
             <h6 class="h6-left"><b>
               <%= project.label:"公開範囲",class:"col-sm-4"%></b>
               <br>
-              
+
               <label for="inputRelease">公開</label>
                 <%= project.radio_button :public_status, true, checked: (@project.public_status == true), id: "inputRelease" %>
               <label for="inputRelease">下書き保存</label>
               <%= project.radio_button :public_status, false, checked: (@project.public_status == false), id: "inputDraft" %>
             </h6>
             <br>
-            
+
             <div class="left-50px">
               <%= project.submit "上記内容で更新", class: "btn btn-success" %>
             </div>

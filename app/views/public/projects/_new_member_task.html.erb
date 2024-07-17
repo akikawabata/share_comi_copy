@@ -3,7 +3,6 @@
     <%# link_to_add_associationのform_nameで指定した名前。(初期値 : f)  %>
 
       <h6><b><%= member_task.label :member_id, '担当者' %></b><br>
-      <%#= member_task.collection_select :member_id, @members, :is_active.true, :id, :screen_name, include_blank: "選択して下さい"  %>
       <%= member_task.collection_select :member_id, @members.select { |member| member.is_active }, :id, :screen_name, include_blank: "選択して下さい" %></h6>
   </div>
   <div class="field">

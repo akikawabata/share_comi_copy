@@ -42,11 +42,12 @@ class Admin::MembersController < ApplicationController
   end
 
 def update
+  @member = Member.find(params[:id])
   if @member.update(member_params)
     # 画像のアップロード処理を追加
     @member.profile_image.attach(params[:member][:profile_image])
     # 画像の表示部分を追加
-    redirect_to @member
+    redirect_to admin_member_path
   else
     render 'edit'
   end

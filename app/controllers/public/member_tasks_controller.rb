@@ -23,5 +23,3 @@ class Public::MemberTasksController < ApplicationController
     params.require(:member_task).permit(:making_status)
   end
 end
-
-# テスト

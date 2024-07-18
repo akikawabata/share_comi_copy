@@ -152,6 +152,10 @@ display: flex; align-items: center;
   margin-left: auto;
 }
 
+.label-hidden {
+  color: transparent;
+}
+
 // ul {
 //   list-style: none;//リストマーク（・）削除:q
 // }

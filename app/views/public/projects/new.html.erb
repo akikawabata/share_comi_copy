@@ -24,48 +24,60 @@
           </div>
           <hr>
 
-          <%# 担当者追加フォーム：詳細 : https://github.com/nathanvda/cocoon#link_to_add_association %>
-          <div class="h6-left">
-            <%= link_to_add_association '担当者追加',
-              project,#form_withのformタグ変数
-              :member_tasks, #フォームのデータを追加するモデル名
-              partial: "new_member_task.html",#追加するフォームの部分テンプレート
-              data: {
-                association_insertion_node: '#member_task-forms',#フォームを追加する場所の指定
-                association_insertion_method: 'after'#フォームを前後どの位置に追加するか。(初期値: before)
-              },
-              form_name: 'member_task', #フォームオブジェクトを指定する場合(初期値 : f)
-              class: "btn btn-success mr-2" %>
+ <!-- 担当者追加フォーム -->
+<div class="member-task">
+  <div class="h6-left">
+    <%= link_to_add_association '担当者を追加',
+      project,
+      :member_tasks,
+      partial: "new_member_task.html",
+      data: {
+        association_insertion_node: '#member_task-forms',
+        association_insertion_method: 'after'
+      },
+      form_name: 'member_task',
+      class: "btn btn-success mr-2" %>
+  </div>
 
-              <%#担当者追加する場所。%><%#link_to_add_associationのassociation_insertion_nodeで指定 %>
+  <!-- 担当者追加する場所 -->
+  <div id="member_task-forms">
+    <div class="nested-fields">
+      <div class="field">
+        <table>
+          <thead>
+            <tr>
+              <th>担当者</th>
+              <th>タスク内容</th>
+              <th></th>
+            </tr>
+          </thead>
+          
+          <!--担当表示-->
+          <%= project.fields_for :member_tasks do |member_task| %>
+          <% end %>
+        </table> <!--  -->
+      </div>
+    </div>
+  </div>
 
-              <div id="member_task-forms">
-                <%= project.fields_for :member_tasks do |member_task| %>
+    <hr>
+  <!-- 公開範囲 -->
+  <div class="left-50px">
+    <h6 class="left-100">
+      <b><%= project.label:"公開範囲",class:"col-sm-4" %></b>
+    </h6>
 
-                <% end %>
-              </div>
-            </div>
-            <hr>
-            </div>
+    <%= project.radio_button :public_status, :true, checked: @project.public_status == true %>
+    <%= project.label :public_status, "公開", { value: :true, style: "display: inline-block;" } %>
+    <%= project.radio_button :public_status, :false, checked: @project.public_status == false %>
+    <%= project.label :public_status, "下書き保存", { value: :false, style: "display: inline-block;" } %>
+    <br>
 
-
-            <!--公開範囲-->
-            <h6 class="h6-left"><b>
-              <%= project.label:"公開範囲",class:"col-sm-4"%></b>
-              <br>
-
-              <%= project.radio_button :public_status, :true, checked: @project.public_status == true %>
-              <%= project.label :public_status, "公開", { value: :true, style: "display: inline-block;" } %>
-              <%= project.radio_button :public_status, :false, checked: @project.public_status == false %>
-              <%= project.label :public_status, "下書き保存", { value: :false, style: "display: inline-block;" } %>
-            </h6>
-            <br>
-
-            <div class="left-50px">
-              <%= project.submit '上記内容で追加', class: "btn btn-success" %>
-            </div>
-           </div><!--container-->
-          </div>
-     <% end %>
- <% end %>
+    <%= project.submit '上記内容で追加', class: "btn btn-success" %>
+  </div><!-- end of .left-50px -->
+</div><!-- end of .member-task -->
+  </div><!--container-->
+</div><!-- end of .member-task -->
+<% end %>
+<% end %>
  </div><!--col-md-9-->

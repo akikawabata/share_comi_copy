@@ -1,0 +1,21 @@
+                  <td>
+                      <div class="label-hidden">
+                        <%= member_task.label :member_id %>
+                      </div>
+                      <%= member_task.collection_select :member_id, @members, :id, :screen_name, include_blank: "選択して下さい"  %></h6>
+                    </td>
+
+                    <td>
+                      <div class="field">
+                        <div class="label-hidden">
+                          <%= member_task.label :task %>
+                        </div>
+                          <h6><%= member_task.text_area :task %></h6>
+                      </div>
+                    </td>
+
+                    <td>
+                      <div class="field">
+                        <%= link_to_remove_association "削除", member_task, class: "btn btn-primary mr-2 text-dark" %>
+                      </div>
+                    </td>

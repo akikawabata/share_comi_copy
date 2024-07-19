@@ -2,17 +2,15 @@
 
     <%# link_to_add_associationのform_nameで指定した名前。(初期値 : f)  %>
     <div class="field">
-      <h6 class="left-50px-pin"><%= member_task.label :member_id, '担当者' %>
-        <%= member_task.collection_select :member_id, @members, :id, :screen_name, include_blank: "選択して下さい"  %>
-      </h6>
+      <h6 class="left-50px-pin"><b><%= member_task.label :member_id, '担当者' %></b></h6>
+      <h6 class="left-50px-pin"><%= member_task.collection_select :member_id, @members, :id, :screen_name, include_blank: "選択して下さい"  %></h6>
     </div>
 
       <div class="field">
-        <h6 class="left-50px-pin">
-          <%= member_task.label :task, 'タスク内容' %>
+        <h6 class="left-50px-pin"><b><%= member_task.label :task, 'タスク内容' %></b>
           <%= member_task.text_area :task %>
-        </h6>
       </div>
+
 
       <div class="field">
         <h6 class="left-50px-pin">

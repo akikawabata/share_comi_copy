@@ -63,6 +63,8 @@
     <%= project.label :public_status, "公開", { value: :true, style: "display: inline-block;" } %>
     <%= project.radio_button :public_status, :false, checked: @project.public_status == false %>
     <%= project.label :public_status, "下書き保存", { value: :false, style: "display: inline-block;" } %>
+   
+    <br>
     <br>
 
     <%= project.submit '上記内容で追加', class: "btn btn-success" %>

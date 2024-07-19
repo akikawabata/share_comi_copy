@@ -50,19 +50,16 @@
 
                 <!--既存担当表示-->
                 <%= project.fields_for :member_tasks do |member_task| %>
-                  
                     <%# link_to_add_associationのform_nameで指定した名前。(初期値 : f)  %>
-
                   <%= render 'edit_member_task_default', member_task: member_task %>
-
-<% end %>
-                 
+                <% end %>
 
               </table>
             </div><!-- field -->
           </div><!-- nested-fields -->
         </div><!-- member_task-forms -->
         <br>
+        <hr>
 
         <!-- 公開範囲 -->
         <div class="left-50px">
@@ -75,6 +72,7 @@
 
           <br>
           <br>
+
           <div class="field">
           <%= project.submit "上記内容で更新", class: "btn btn-success" %>
           </div>

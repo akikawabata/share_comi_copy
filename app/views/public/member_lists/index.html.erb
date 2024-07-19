@@ -9,6 +9,7 @@
         <th></th>
         <th>メンバー名</th>
         <th>メールアドレス</th>
+        <th>メンバーステータス</th>
       </tr>
     </thead>
     <tbody>
@@ -16,7 +17,13 @@
       </tr>
           <td><%= image_tag member.get_profile_image(100,100), class: "square-image" %></td>
           <td><%= link_to member.screen_name, public_member_path(member.id), class: "custom-link" %> </td>
-          <td><%= link_to member.email %> </td>
+          <td><%= member.email %> </td>
+                        <% if member.is_active %>
+            <td><%=  "在籍中" if member.is_active %></td>
+              <% else %>
+          <td>退職</td>
+              <% end %>
+
       <% end %>
     </tbody>
   </table>

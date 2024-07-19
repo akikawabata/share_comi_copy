@@ -1,6 +1,6 @@
 <div class="col-10 col-sm-9 col-md-9 col-lg-9">
   <p><%= flash[:notice] %></p>
-  <h5><b>自分の担当一覧</b></h5>
+  <h5><b>自分のタスク一覧</b></h5>
   <br>
 
   <table>
@@ -11,7 +11,7 @@
         <th>制作ステータス</th>
       </tr>
     </thead>
-    
+
     <tbody>
       <% if @member_tasks.any? %>
         <% @member_tasks.each do |member_task| %>

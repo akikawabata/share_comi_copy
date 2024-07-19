@@ -28,7 +28,7 @@
     <br>
     <hr>
 
-        <!-- 担当者追加フォーム -->
+        <!-- 担当者追加ボタン -->
         <div class="member-task">
           <div class="h6-left">
           <%= link_to_add_association '担当者を追加',
@@ -47,24 +47,16 @@
         <div id="member_task-forms">
           <div class="nested-fields">
             <div class="field">
-              <table>
-                <thead>
-                  <tr>
-                    <th>担当者</th>
-                    <th>タスク内容</th>
-                    <th></th>
-                  </tr>
-                </thead>
 
                 <!--既存担当表示-->
                 <%= project.fields_for :member_tasks do |member_task| %>
-                  <tbody>
+                  
                     <%# link_to_add_associationのform_nameで指定した名前。(初期値 : f)  %>
 
                   <%= render 'edit_member_task_default', member_task: member_task %>
 
 <% end %>
-                 </tbody>
+                 
 
               </table>
             </div><!-- field -->
@@ -83,7 +75,9 @@
 
           <br>
           <br>
+          <div class="field">
           <%= project.submit "上記内容で更新", class: "btn btn-success" %>
+          </div>
         </div><!-- left-50px -->
         </h6>
 

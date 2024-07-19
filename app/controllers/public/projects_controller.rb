@@ -14,15 +14,16 @@ class Public::ProjectsController < ApplicationController
       if @project.save(context: :publicize)
         redirect_to public_project_path(@project), notice: "追加しました。"
       else
-        render :new, alert: "追加できませんでした。入力内容をご確認のうえ再度お試しください。"
+        flash[:notice] = "追加できませんでした。入力内容をご確認のうえ再度お試しください。"
+        render :new
       end
-    else
-      @project.public_status = false
+      else
+        @project.public_status = false
 
       if @project.save
         redirect_to public_project_candidates_path(current_member), notice: "下書き保存しました。"
       else
-        render :new, alert: "追加できませんでした。入力内容をご確認のうえ再度お試しください。"
+        render :new, notice: "追加できませんでした。入力内容をご確認のうえ再度お試しください。"
       end
     end
   end

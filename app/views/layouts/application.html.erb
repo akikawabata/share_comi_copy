@@ -55,13 +55,13 @@
             <% if member_signed_in? %>
               <%- if request.path.match(/\/public(\/)?/) %>
 
-                <%= link_to new_public_project_path, class: 'btn btn-success btn-sm btn-block mt-2 mr-3 sign_in text-nowrap' do %>
+                <%= link_to new_public_project_path, class: 'btn btn-success btn-sm btn-block mt-2 mr-3 sign_in btn-lg text-nowrap' do %>
                   <i class="fa-solid fa-plus"></i> 企画追加
                 <% end %>
 
                 <%= link_to public_member_path(current_member) do %>
                   <div class="profile-image">
-                    <%= image_tag current_member.get_profile_image(100,100), class: "square-image" %>
+                    <%= image_tag current_member.get_profile_image(100,100), class: "square-image d-block mx-auto ml-3" %>
                   </div>
                 <% end %>
               <% end %><!--(/\/public(\/)?/)-->
@@ -80,7 +80,7 @@
                 <% end %>
 
                  <%= link_to admin_customers_path do %>
-                  <%= image_tag current_admin.get_profile_image(100,100), class: "square-image" %></td>
+                  <%= image_tag current_admin.get_profile_image(100,100), class: "square-image d-block mx-auto ml-3" %>
                 <% end %>
 
                 <li class="nav-item">

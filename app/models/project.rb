@@ -1,6 +1,7 @@
 class Project < ApplicationRecord
   belongs_to :member
   has_many :member_tasks, dependent: :destroy
+  has_many :member_tasks, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
   # reject_ifは、入力フォームを追加しているもののすべてが空白の場合にリジェクトする

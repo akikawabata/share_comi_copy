@@ -33,13 +33,13 @@ h1,h4,h5,h6,p,span,table,.left-50px,.left-50px-pin,.select-color {
 
 .btn-success {
   background-color: #6B86B9 !important;
- border-color: #6B86B9 !important;
+  border-color: #6B86B9 !important;
 }
 
 .btn-primary {
   background-color: #EDEDF2 !important;
- border-color: #EDEDF2 !important;
- color: #707070 !important;
+  border-color: #EDEDF2 !important;
+  color: #707070 !important;
 }
 
 .btn-secondary {
@@ -72,7 +72,7 @@ h1,h4,h5,h6,p,span,table,.left-50px,.left-50px-pin,.select-color {
 }
 
 .custom-link {
-    color: #6B86B9;
+   color: #6B86B9;
 }
 
 .fc .fc-button-primary:disabled {
@@ -107,7 +107,7 @@ table, td {
 // 幅調整
 
 h5 {
-   padding: 12px 0px 30px 30px;
+  padding: 12px 0px 30px 30px;
 }
 
 .h6-left {
@@ -115,19 +115,19 @@ padding: 8px 0px 0px 50px;
 }
 
 .left-50px {
-   padding: 0px 30px 35px 50px;
+  padding: 0px 30px 35px 50px;
 }
 
 .left-50px-pin {
-   padding-left: 50px;
+  padding-left: 50px;
 }
 
 .tblr-px {
-   padding: 12px 30px 20px 50px;
+  padding: 12px 30px 20px 50px;
 }
 
 .title {
-display: flex; align-items: center;
+  display: flex; align-items: center;
 }
 
 .btn_edit_delete {
@@ -139,7 +139,7 @@ display: flex; align-items: center;
 }
 
 .nested-fields {
-display: flex; align-items: center;
+  display: flex; align-items: center;
 }
 
 .sidebar {
@@ -152,10 +152,4 @@ display: flex; align-items: center;
   margin-left: auto;
 }
 
-.label-hidden {
-  color: transparent;
-}
 
-// ul {
-//   list-style: none;//リストマーク（・）削除:q
-// }

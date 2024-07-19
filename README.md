@@ -11,8 +11,8 @@
 共有漏れが発生する原因として、企画やキャンペーンの資料の散乱や、
 それに加え、次の仕事に追われ共有を忘れてしまうのではないかと考えました。
 
-そこで考えたのが、分散された資料をまとめられる運用向けの管理ツールがあれば
-散乱しがちな資料、チームへの共有漏れが解決できるのではないかと考えました。
+自分のタスクやこれから制作する企画を簡単に管理できる運用向けの管理ツールがあれば
+チームへの共有漏れが解決できるのではないかと考えました。
 
 似ている管理ツールではBacklogやRedmineなどありますが、プロジェクト単位が多く、
 既に運用が始まっているチームで活用するには、
@@ -26,7 +26,7 @@
 ### ターゲットユーザ
 - ビジネスなどにおいてアプリなど運用を開始しているチーム
 - チームでの共有漏れが多いと感じている人
-- 資料が散乱して困っている人
+- 担当の割り振り、自分のタスクの管理に漏れが多いと感じている人
 - 在宅ワークにて、チームの共有漏れが多くなってきた人
 
 <!--誰に使ってもらうかを具体的に記載する-->
@@ -39,8 +39,12 @@
 <!--どのような時に使うのかの状況を記載すること-->
 
 ## 設計書
-後ほど制作予定
-<!--テーマを設定・提出する時点では不要です-->
+- アプリケーション詳細設計書：https://docs.google.com/spreadsheets/d/1qYKOdAsgnQTgdlWgKxfj_s7qxvDsh8yH/edit?gid=549108681#gid=549108681
+- テーブル定義書：https://docs.google.com/spreadsheets/d/1tENCim0ezNmdF65forXJ7a1_HkOEPDOSa38mrJ1gvxw/edit?gid=1243549839#gid=1243549839
+- https://app.diagrams.net/?src=about#G1R0FyUqn8tlkCV3Csaq2u2UUKVoOqZfKZ#%7B%22pageId%22%3A%2239JxW9BF5L5hqCkpsdiR%22%7D
+- UI flow（ユーザー）：https://app.diagrams.net/?src=about#G1R0FyUqn8tlkCV3Csaq2u2UUKVoOqZfKZ#%7B%22pageId%22%3A%22C5RBs43oDa-KdzZeNtuy%22%7D
+- UI flow（管理者）：hhttps://app.diagrams.net/?src=about#G1R0FyUqn8tlkCV3Csaq2u2UUKVoOqZfKZ#%7B%22pageId%22%3A%22IdAqZzrSLQAh3Ao71TNA%22%7D
+- ER図：https://app.diagrams.net/?src=about#G1R0FyUqn8tlkCV3Csaq2u2UUKVoOqZfKZ#%7B%22pageId%22%3A%2239JxW9BF5L5hqCkpsdiR%22%7D
 
 ## 開発環境
 - OS：MacOS Big Sur

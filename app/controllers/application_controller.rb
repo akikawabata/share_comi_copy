@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   def set_sidebar_count
     # @member_tasks_count = MemberTask.where(member_id: current_member.id, making_status: [0, 1]).count
     @member_tasks_count = MemberTask.joins(:project).where(member_id: current_member.id, projects: { public_status: true }).where.not(making_status: 'completion').count
-                                  # where(making_status: ['not_started_yet', 'under_construction']).joins(:project).where(projects: { public_status: true })
+    # where(making_status: ['not_started_yet', 'under_construction']).joins(:project).where(projects: { public_status: true })
 
     @project_drafts_count = Project.where(member_id: current_member.id, public_status: false).count
   end

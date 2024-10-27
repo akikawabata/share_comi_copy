@@ -8,6 +8,7 @@ class Admin::TeamsController < ApplicationController
     team = Team.new(team_params)
     team.admin_id = current_admin.id
     team.save
+    Rails.logger.info "ログ：新規チームを制作"
     redirect_to admin_teams_path, notice: "チームを追加しました。右上の「メンバー追加」からメンバーを追加してチームの選択をしてください"
   end
 
@@ -21,6 +22,7 @@ class Admin::TeamsController < ApplicationController
     # チームに所属しているメンバー
     @team = Team.find(params[:id])
     @members = @team.members
+    Rails.logger.info "ログ：チームの詳細画面ページに遷移"
   end
 
   def edit
@@ -41,6 +43,7 @@ class Admin::TeamsController < ApplicationController
 
   def destroy
     @team = Team.find(params[:id])
+    # byebug
     @team.destroy
     redirect_to admin_teams_path
   end

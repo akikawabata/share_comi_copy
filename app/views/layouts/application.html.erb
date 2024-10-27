@@ -1,7 +1,8 @@
+<!--Share Comi copy-->
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Share Comi</title>
+    <title>Share Comi copy</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -23,25 +24,25 @@
         <!--ロゴ(常設)-->
         <%- if request.path.match(/\/sign_in(\/)?/) %>
           <a class="navbar-brand" href="/">
-            <span><b>Share Comi</span><span class="logo-2"></span></b>
+            <span><b>Share Comi(copy)</span><span class="logo-2"></span></b>
           </a>
         <%- elsif request.path.match(/\/sign_up(\/)?/) %>
           <a class="navbar-brand" href="/">
-            <span><b>Share Comi</span><span class="logo-2"></span></b>
+            <span><b>Share Comi(copy)</span><span class="logo-2"></span></b>
           </a>
         <%- elsif request.path.match(/\/admin(\/)?/) %>
           <a class="navbar-brand" href="/">
-            <span><b>Share Comi</span><span class="logo-2">管理</span></b>
+            <span><b>Share Comi(copy)</span><span class="logo-2">管理</span></b>
           </a>
         <%- elsif request.path.match(/\/public(\/)?/) %>
           <a class="navbar-brand" href="/">
-            <span><b>Share Comi</span><span class="logo-2">メンバー</span></b>
+            <span><b>Share Comi(copy)</span><span class="logo-2">メンバー</span></b>
           </a>
         <% end %>
 
         <% if request.path == root_path %>
           <a class="navbar-brand" href="/">
-            <span><b>Share Comi</b></span>
+            <span><b>Share Comi(copy)</b></span>
           </a>
         <% end %>
 

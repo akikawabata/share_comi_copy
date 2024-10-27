@@ -2,7 +2,7 @@
   <p><%= flash[:notice] %></p>
     <h5><b>チーム名編集</b></h5>
   <%= form_with model: @team, url:admin_team_path do |f| %>
-  <h6 class="h6-left"><b>チーム名</h6>
+  <h6 class="h6-left"><b>チーム名</h6></b>
   <div class="left-50px">
     <%= f.text_field :team_name %>
   </div>
@@ -11,5 +11,9 @@
     <%= f.submit '保存', class: "btn btn-success" %>
     </div>
   <% end %>
-</div><!--col-md-9-->
-  　<%#= link_to "このチームを削除", admin_teams_destroy_path(@team), class: "btn btn-secondary" %>
+<%#= link_to "このチームを削除", admin_teams_path(@team.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-secondary" %>
+<%= link_to "このチームを削除", admin_team_path(@team), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-secondary" %>
+
+<!--data: これは link_to ヘルパーに渡すオプションハッシュの一部で、リンクにカスタムの data-* 属性を追加するためのものです。data: オプションを使うと、リンクに追加したい任意のデータを data-* 属性として渡すことができます。-->
+<!--confirm: は直接のオプションではなく、現在の Rails では data: オプションの中のキー として使われています。ですので、最新の link_to の記述方法では、data: { confirm: "..." } を使うのが標準的です。-->
+

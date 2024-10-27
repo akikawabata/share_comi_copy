@@ -34,7 +34,7 @@ end
  devise_for :members, controllers: {
     sessions: 'public/sessions'#
   }
-#   skip: [:registrations],
+# skip: [:registrations],
 #デバイスのルート設定 デバイスが用意したコントロールを使う
  devise_for :admin, controllers: {#
     registrations: 'admin/registrations',
@@ -52,7 +52,7 @@ end
   # post 'member_tasks'     => 'member_tasks#index'
   resources :member_lists, only: [:index]
   resources :projects do
-    resources :post_comments, only: [:create]
+  resources :post_comments, only: [:create]
   end
     patch 'projects/:id'     => 'projects#status'
     get 'project/candidates'     => 'projects#draft'
